@@ -1,0 +1,2482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&S Beauty - Professional Hair Braiding & Lash Services</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #000;
+            --secondary-color: #f8f8f8;
+            --accent-color: #c08a75; /* Matching the pinkish accent from the business card */
+            --accent-color-hover: #a77864;
+            --text-color: #333;
+            --light-text: #fff;
+            --light-gray: #f4f4f4;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #666;
+            --box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Great Vibes', 'Cormorant Garamond', serif;
+        }
+        
+        body {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 500;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        p {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.7;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        
+        .btn {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(192, 138, 117, 0.3);
+        }
+        
+        .btn:hover {
+            background-color: var(--accent-color-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .btn.outline {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+        
+        .btn.outline:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+        
+        .section-padding {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        .mb-5 {
+            margin-bottom: 3rem;
+        }
+        
+        .mb-4 {
+            margin-bottom: 2rem;
+        }
+        
+        .mb-3 {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: var(--transition);
+        }
+        
+        header.sticky {
+            padding: 0.7rem 0;
+            background-color: rgba(0, 0, 0, 0.95);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .logo span {
+            font-family: 'Playfair Display', serif;
+            margin-left: 5px;
+            font-style: italic;
+        }
+        
+        nav {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            margin: 0 1.2rem;
+        }
+        
+        .nav-menu li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-menu li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            bottom: 0;
+            left: 0;
+            transition: var(--transition);
+        }
+        
+        .nav-menu li a:hover::after,
+        .nav-menu li a.active::after {
+            width: 100%;
+        }
+        
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            color: var(--accent-color);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 21px;
+            position: relative;
+            margin-left: 20px;
+        }
+        
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: var(--light-text);
+            border-radius: 9px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: var(--transition);
+        }
+        
+        .hamburger span:nth-child(1) {
+            top: 0px;
+        }
+        
+        .hamburger span:nth-child(2),
+        .hamburger span:nth-child(3) {
+            top: 9px;
+        }
+        
+        .hamburger span:nth-child(4) {
+            top: 18px;
+        }
+        
+        .hamburger.open span:nth-child(1),
+        .hamburger.open span:nth-child(4) {
+            top: 9px;
+            width: 0%;
+            left: 50%;
+        }
+        
+        .hamburger.open span:nth-child(2) {
+            transform: rotate(45deg);
+        }
+        
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            width: 100%;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/download1-ezgif.com-webp-to-jpg-converter.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--light-text);
+            position: relative;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 400;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+        
+        .hero-btns {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--light-text);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: rgba(212, 175, 55, 0.05);
+            z-index: 0;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-img {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            height: 500px;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            border: 5px solid var(--accent-color);
+            border-radius: 10px;
+            z-index: -1;
+        }
+        
+        .about-text {
+            padding-right: 20px;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .about-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 2rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-item i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            color: var(--accent-color);
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .services::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: rgba(212, 175, 55, 0.05);
+            z-index: 0;
+        }
+        
+        .services-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-card {
+            background-color: var(--light-text);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-img {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .service-content h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .service-content p {
+            color: var(--dark-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .price {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .price span {
+            font-size: 1rem;
+            color: var(--dark-gray);
+        }
+        
+        /* Products Section */
+        .products {
+            background-color: var(--light-text);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .products::before {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: rgba(212, 175, 55, 0.05);
+            z-index: 0;
+        }
+        
+        .products-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        .product-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin: 0 5px;
+            transition: var(--transition);
+            border-bottom: 2px solid transparent;
+            color: var(--dark-gray);
+        }
+        
+        .tab-btn.active {
+            border-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .product-card {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            padding: 5px 10px;
+            font-size: 0.8rem;
+            border-radius: 20px;
+            font-weight: 600;
+            z-index: 1;
+        }
+        
+        .product-img {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+        
+        .product-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .product-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.7rem;
+        }
+        
+        .product-price {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .original-price {
+            color: var(--dark-gray);
+            text-decoration: line-through;
+            font-size: 1rem;
+        }
+        
+        .product-rating {
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .product-actions .btn {
+            padding: 0.5rem 1rem;
+            flex: 1;
+            font-size: 0.9rem;
+        }
+        
+        /* Gallery Section */
+        .gallery {
+            background-color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .gallery-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        .gallery-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            background-color: transparent;
+            border: 2px solid var(--medium-gray);
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 5px;
+            transition: var(--transition);
+            color: var(--dark-gray);
+        }
+        
+        .filter-btn.active,
+        .filter-btn:hover {
+            background-color: var(--accent-color);
+            border-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-icon {
+            color: var(--accent-color);
+            font-size: 2rem;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--light-text);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-color: rgba(212, 175, 55, 0.05);
+            z-index: 0;
+        }
+        
+        .testimonials-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            position: relative;
+        }
+        
+        .testimonial-slider {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        .testimonial-slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 0 20px;
+        }
+        
+        .testimonial-card {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '\f10d';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            font-size: 2rem;
+            color: var(--accent-color);
+            opacity: 0.2;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .author-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            border: 3px solid var(--accent-color);
+        }
+        
+        .author-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+        
+        .author-title {
+            color: var(--dark-gray);
+            font-size: 0.9rem;
+        }
+        
+        .testimonial-rating {
+            margin-top: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .slider-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+            transition: var(--transition);
+        }
+        
+        .slider-btn:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+        
+        .slider-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        
+        .slider-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: var(--medium-gray);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .slider-dot.active {
+            background-color: var(--accent-color);
+        }
+        
+        /* Booking Section */
+        .booking {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .booking::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: rgba(212, 175, 55, 0.1);
+            z-index: 0;
+        }
+        
+        .booking-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .booking h2 {
+            color: var(--light-text);
+        }
+        
+        .booking h2::after {
+            background-color: var(--accent-color);
+        }
+        
+        .booking p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .booking-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 50px;
+            transition: var(--transition);
+        }
+        
+        .info-item:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        
+        .info-item i {
+            margin-right: 0.8rem;
+            font-size: 1.3rem;
+            color: var(--accent-color);
+        }
+        
+        .booking-form {
+            max-width: 700px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: var(--light-text);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--light-text);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--secondary-color);
+            position: relative;
+        }
+        
+        .contact-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .contact-info p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-details div {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details i {
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 1rem;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        
+        .contact-info-text {
+            flex: 1;
+        }
+        
+        .contact-info-text span {
+            display: block;
+        }
+        
+        .contact-info-text .info-title {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 2rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-text);
+            border-radius: 50%;
+            color: var(--primary-color);
+            margin-right: 1rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+        
+        .contact-form {
+            background-color: var(--light-text);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+        }
+        
+        .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .contact-form h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .contact-form form {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .contact-form .form-control {
+            background-color: var(--secondary-color);
+            border: 1px solid #e0e0e0;
+            color: var(--text-color);
+        }
+        
+        .contact-form .form-control:focus {
+            border-color: var(--accent-color);
+        }
+        
+        .contact-form textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Map Section */
+        .map {
+            height: 400px;
+            background-color: var(--medium-gray);
+            position: relative;
+        }
+        
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 4rem 0 0;
+            position: relative;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding-bottom: 3rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        
+        .footer-logo span {
+            display: block;
+            font-size: 1.6rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-heading {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .footer-heading::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links li a:hover {
+            color: var(--accent-color);
+            padding-left: 5px;
+        }
+        
+        .footer-links li a i {
+            margin-right: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .footer-contact-item {
+            display: flex;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .footer-contact-item i {
+            margin-right: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .footer-contact-item span {
+            flex: 1;
+        }
+        
+        .footer-social {
+            margin-top: 1.5rem;
+        }
+        
+        .footer-social a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light-text);
+            margin-right: 0.7rem;
+            transition: var(--transition);
+        }
+        
+        .footer-social a:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            text-decoration: none;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--accent-color-hover);
+            transform: translateY(-3px);
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease;
+        }
+        
+        /* Media Queries */
+        @media (max-width: 992px) {
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img::before {
+                display: none;
+            }
+            
+            .service-card,
+            .product-card {
+                max-width: 400px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--primary-color);
+                flex-direction: column;
+                text-align: center;
+                transition: var(--transition);
+                z-index: 999;
+                padding: 2rem 0;
+            }
+            
+            .nav-menu.show {
+                left: 0;
+            }
+            
+            .nav-menu li {
+                margin: 1.5rem 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .booking-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-img,
+            .product-img {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .booking-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .section-padding {
+                padding: 70px 0;
+            }
+            
+            .gallery-item {
+                height: 250px;
+            }
+            
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-container">
+                <div class="logo">
+                    R&S <span>Beauty</span>
+                </div>
+                <nav>
+                    <ul class="nav-menu">
+                        <li><a href="#home" class="active">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#booking">Book Now</a></li>
+                    </ul>
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 style="font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 700; margin-bottom: 1.5rem;">R&S Beauty</h1>
+                <p style="font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 400; line-height: 1.8; margin-bottom: 2rem;">Professional braiding and certified lash tech specializing in creating flawless, long-lasting styles tailored to your unique beauty—whether for everyday wear, special occasions, or protective styling.</p>
+                <div class="hero-btns">
+                    <a href="#booking" class="btn">Book Now</a>
+                    <a href="#services" class="btn outline">Explore Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about section-padding" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-img">
+                    <img src="images/download-ezgif.com-webp-to-jpg-converter.jpg" alt="About R&S Beauty">
+                </div>
+                <div class="about-text">
+                    <h2>About R&S Beauty</h2>
+                    <p>At R&S Beauty, we are passionate about helping you look and feel your best. As a professional braider and certified lash technician, I specialize in creating flawless, long-lasting styles tailored to your unique beauty.</p>
+                    <div class="about-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Professional Services</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Certified Expertise</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Quality Products</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Customized Styles</span>
+                        </div>
+                    </div>
+                    <p>Whether you're looking for everyday wear, special occasions, or protective styling, we provide personalized service to meet your specific needs and preferences. With years of experience and a dedication to continuous education in the latest techniques, we promise you'll leave our studio feeling confident and beautiful.</p>
+                    <a href="#booking" class="btn">Book Your Appointment</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services section-padding" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-intro">
+                <p>We offer a variety of professional hair braiding and lash services to enhance your natural beauty. Each service is customized to your unique style and preferences.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="images/baptista-ime-james-OaOiK63YIeM-unsplash.jpg" alt="Knotless Braids">
+                    </div>
+                    <div class="service-content">
+                        <h3>Knotless Braids</h3>
+                        <p>Our signature knotless braids provide a natural, comfortable look with less tension on your scalp. Perfect for long-term wear.</p>
+                        <div class="price">$150 <span>and up</span></div>
+                        <a href="#booking" class="btn">Book Now</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="images/clarissa-carbungco-ymY5oadXAZI-unsplash.jpg" alt="Spiral Braids">
+                    </div>
+                    <div class="service-content">
+                        <h3>Spiral Braids</h3>
+                        <p>Beautiful spiral braids crafted to perfection, giving you a stunning, long-lasting protective style that turns heads.</p>
+                        <div class="price">$180 <span>and up</span></div>
+                        <a href="#booking" class="btn">Book Now</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="images/gama-films-tZx2TIOBQnQ-unsplash.jpg" alt="Soft Locs">
+                    </div>
+                    <div class="service-content">
+                        <h3>Soft Locs</h3>
+                        <p>Our soft locs technique creates a lightweight, natural-looking style that's comfortable to wear and easy to maintain.</p>
+                        <div class="price">$200 <span>and up</span></div>
+                        <a href="#booking" class="btn">Book Now</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="images/brock-wegner-zWOPIzzzltk-unsplash.jpg" alt="Lashes">
+                    </div>
+                    <div class="service-content">
+                        <h3>Lashes</h3>
+                        <p>As a certified lash tech, we offer premium lash extensions to enhance your natural beauty and make your eyes pop.</p>
+                        <div class="price">$90 <span>and up</span></div>
+                        <a href="#booking" class="btn">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products section-padding" id="products">
+        <div class="container">
+            <h2 class="section-title">Our Products</h2>
+            <div class="products-intro">
+                <p>Discover our selection of high-quality hair and beauty products. We've carefully curated these items to help you maintain your beautiful styles at home.</p>
+            </div>
+            <div class="product-tabs">
+                <button class="tab-btn active" data-target="all">All Products</button>
+                <button class="tab-btn" data-target="hair">Hair Care</button>
+                <button class="tab-btn" data-target="lash">Lash Care</button>
+                <button class="tab-btn" data-target="accessories">Accessories</button>
+            </div>
+            <div class="products-grid">
+                <div class="product-card" data-category="hair">
+                    <div class="product-badge">Best Seller</div>
+                    <div class="product-img">
+                        <img src="images/amy-lewis-mGEVuLZNAxY-unsplash.jpg" alt="Hair Oil">
+                    </div>
+                    <div class="product-content">
+                        <h3>Nourishing Hair Oil</h3>
+                        <div class="product-price">
+                            <span>$24.99</span>
+                            <span class="original-price">$29.99</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">Add to Cart</a>
+                            <a href="#" class="btn outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="hair">
+                    <div class="product-img">
+                        <img src="images/gabrielle-henderson-1DMNn6gBbwQ-unsplash.jpg" alt="Edge Control">
+                    </div>
+                    <div class="product-content">
+                        <h3>Premium Edge Control</h3>
+                        <div class="product-price">
+                            <span>$18.99</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">Add to Cart</a>
+                            <a href="#" class="btn outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="lash">
+                    <div class="product-img">
+                        <img src="images/glenna-haug-aYrOtqypmho-unsplash.jpg" alt="Lash Cleanser">
+                    </div>
+                    <div class="product-content">
+                        <h3>Gentle Lash Cleanser</h3>
+                        <div class="product-price">
+                            <span>$15.99</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">Add to Cart</a>
+                            <a href="#" class="btn outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card" data-category="accessories">
+                    <div class="product-badge">New</div>
+                    <div class="product-img">
+                        <img src="images/nick-scott-Yo6tVaQHAho-unsplash.jpg" alt="Satin Bonnet">
+                    </div>
+                    <div class="product-content">
+                        <h3>Luxury Satin Bonnet</h3>
+                        <div class="product-price">
+                            <span>$22.99</span>
+                            <span class="original-price">$27.99</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <div class="product-actions">
+                            <a href="#" class="btn">Add to Cart</a>
+                            <a href="#" class="btn outline">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery section-padding" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Our Work</h2>
+            <div class="gallery-intro">
+                <p>Browse through our gallery to see examples of our beautiful braiding and lash work. Each style is customized to enhance our clients' unique features.</p>
+            </div>
+            <div class="gallery-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="braids">Braids</button>
+                <button class="filter-btn" data-filter="locs">Locs</button>
+                <button class="filter-btn" data-filter="lashes">Lashes</button>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-category="braids">
+                    <img src="images/gustavo-spindula-K2D7muBun1A-unsplash.jpg" alt="Knotless Braids" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <a href="/api/placeholder/800/800" class="gallery-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="braids">
+                    <img src="images/gustavo-spindula-M0NkWmz98o8-unsplash.jpg" alt="Spiral Braids" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <a href="/api/placeholder/800/800" class="gallery-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="locs">
+                    <img src="images/kelly-sikkema-kT2VGgFXrAU-unsplash.jpg" alt="Soft Locs" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <a href="/api/placeholder/800/800" class="gallery-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="lashes">
+                    <img src="images/juan-manuel-merino-ZE8Tb4qkiVM-unsplash.jpg" alt="Lash Extensions" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <a href="/api/placeholder/800/800" class="gallery-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="braids">
+                    <img src="images/jessica-felicio-_cvwXhGqG-o-unsplash.jpg" alt="Box Braids" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <a href="/api/placeholder/800/800" class="gallery-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="lashes">
+                    <img src="images/IMG_1808.jpg" alt="Lash Extensions" class="gallery-img">
+                    <div class="gallery-overlay">
+                        <a href="/api/placeholder/800/800" class="gallery-icon">
+                            <i class="fas fa-search-plus"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials section-padding" id="testimonials">
+        <div class="container">
+            <h2 class="section-title">Client Testimonials</h2>
+            <div class="testimonials-intro">
+                <p>Don't just take our word for it - hear what our clients have to say about their experiences at R&S Beauty.</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-slides">
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"I've been getting my braids done at R&S Beauty for over a year now, and I'm always impressed with the quality and attention to detail. My knotless braids last for months and always look amazing!"</p>
+                            <div class="testimonial-author">
+                                <img src="images/prince-akachi-4Yv84VgQkRM-unsplash.jpg" alt="Client" class="author-img">
+                                <h4 class="author-name">Natasha Johnson</h4>
+                                <p class="author-title">Regular Client</p>
+                            </div>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"The lash extensions I got from R&S Beauty were absolutely stunning! The technician was so precise and careful, and my lashes looked natural yet dramatic. I've received so many compliments!"</p>
+                            <div class="testimonial-author">
+                                <img src="images/michael-dam-mEZ3PoFGs_k-unsplash.jpg" alt="Client" class="author-img">
+                                <h4 class="author-name">Michelle Williams</h4>
+                                <p class="author-title">First-time Client</p>
+                            </div>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <p class="testimonial-text">"I love my soft locs! The stylist at R&S Beauty truly understood what I wanted and created a style that perfectly matches my face shape and lifestyle. The salon is clean, professional, and welcoming."</p>
+                            <div class="testimonial-author">
+                                <img src="images/rikonavt-3eebt4Xsg_c-unsplash.jpg" alt="Client" class="author-img">
+                                <h4 class="author-name">Aisha Thompson</h4>
+                                <p class="author-title">Loyal Client</p>
+                            </div>
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn prev-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="slider-dots">
+                    <span class="slider-dot active"></span>
+                    <span class="slider-dot"></span>
+                    <span class="slider-dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section class="booking section-padding" id="booking">
+        <div class="container">
+            <div class="booking-content">
+                <h2 class="section-title">Book Your Appointment</h2>
+                <p>Ready to enhance your natural beauty? Book an appointment today and transform your look with our professional services.</p>
+                <div class="booking-info">
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>514-969-7169</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>508 Dufferin St, Toronto, ON M6K 2A6</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-instagram"></i>
+                        <span>@_r.s_beautys</span>
+                    </div>
+                </div>
+                <form class="booking-form">
+                    <div class="form-group">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Time</label>
+                        <input type="time" class="form-control" required>
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">Service</label>
+                        <select class="form-control" required>
+                            <option value="" disabled selected>Select a Service</option>
+                            <option value="knotless">Knotless Braids</option>
+                            <option value="spiral">Spiral Braids</option>
+                            <option value="locs">Soft Locs</option>
+                            <option value="lashes">Lashes</option>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label class="form-label">Special Requests</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                        <button type="submit" class="btn">Book Appointment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact section-padding" id="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-intro">
+                <p>Have questions or need more information? Feel free to reach out to us!</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>We'd love to hear from you. Contact us using any of the methods below or fill out the form to send us a message.</p>
+                    <div class="contact-details">
+                        <div>
+                            <i class="fas fa-phone"></i>
+                            <div class="contact-info-text">
+                                <span class="info-title">Phone</span>
+                                <span>514-969-7169</span>
+                            </div>
+                        </div>
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="contact-info-text">
+                                <span class="info-title">Address</span>
+                                <span>508 Dufferin St, Toronto, ON M6K 2A6</span>
+                            </div>
+                        </div>
+                        <div>
+                            <i class="fas fa-clock"></i>
+                            <div class="contact-info-text">
+                                <span class="info-title">Opening Hours</span>
+                                <span>Monday-Saturday: 10am - 7pm</span>
+                                <span>Sunday: Closed</span>
+                            </div>
+                        </div>
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <div class="contact-info-text">
+                                <span class="info-title">Email</span>
+                                <span>info@rsbeauty.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://instagram.com/_r.s_beautys" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send a Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Your Phone">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Select Service</option>
+                                <option value="knotless">Knotless Braids</option>
+                                <option value="spiral">Spiral Braids</option>
+                                <option value="locs">Soft Locs</option>
+                                <option value="lashes">Lashes</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map" id="map">
+        <!-- Placeholder for Google Maps iframe -->
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2886.8977683009126!2d-79.42954812412883!3d43.64148905260046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b35402644ca39%3A0x8f7be2b3da49a88c!2s508%20Dufferin%20St%2C%20Toronto%2C%20ON%20M6K%202A6%2C%20Canada!5e0!3m2!1sen!2sus!4v1662545858979!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        R&S
+                        <span>Beauty</span>
+                    </div>
+                    <p>Professional braiding and certified lash tech specializing in creating flawless, long-lasting styles tailored to your unique beauty.</p>
+                    <div class="footer-social">
+                        <a href="https://instagram.com/_r.s_beautys" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links-container">
+                    <h3 class="footer-heading">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> About</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Services</a></li>
+                        <li><a href="#products"><i class="fas fa-chevron-right"></i> Products</a></li>
+                        <li><a href="#gallery"><i class="fas fa-chevron-right"></i> Gallery</a></li>
+                        <li><a href="#booking"><i class="fas fa-chevron-right"></i> Book Now</a></li>
+                    </ul>
+                </div>
+                <div class="footer-services">
+                    <h3 class="footer-heading">Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Knotless Braids</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Spiral Braids</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Soft Locs</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Lash Extensions</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Hair Treatments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3 class="footer-heading">Contact Us</h3>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>508 Dufferin St, Toronto, ON M6K 2A6</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>514-969-7169</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@rsbeauty.com</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Mon-Sat: 10am - 7pm</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 R&S Beauty. All rights reserved. | Designed with <i class="fas fa-heart"></i> for beautiful hair</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button type="button" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- JavaScript -->
+    <script>
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variables
+            const header = document.getElementById('header');
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            const navLinks = document.querySelectorAll('.nav-menu li a');
+            const backToTop = document.querySelector('.back-to-top');
+            const preloader = document.getElementById('preloader');
+            
+            // Preloader
+            window.addEventListener('load', function() {
+                preloader.style.display = 'none';
+            });
+            
+            // Sticky Header
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('sticky');
+                    backToTop.classList.add('show');
+                } else {
+                    header.classList.remove('sticky');
+                    backToTop.classList.remove('show');
+                }
+            });
+            
+            // Hamburger Menu Toggle
+            hamburger.addEventListener('click', function() {
+                this.classList.toggle('open');
+                navMenu.classList.toggle('show');
+            });
+            
+            // Close mobile menu when clicking on a nav link
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    hamburger.classList.remove('open');
+                    navMenu.classList.remove('show');
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Active nav link based on scroll position
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section');
+                const scrollPosition = window.scrollY;
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href') === '#' + sectionId) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Testimonial Slider
+            const testimonialSlides = document.querySelector('.testimonial-slides');
+            const sliderDots = document.querySelectorAll('.slider-dot');
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            let currentSlide = 0;
+            const slideCount = document.querySelectorAll('.testimonial-slide').length;
+            
+            function updateSlider() {
+                testimonialSlides.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                sliderDots.forEach((dot, index) => {
+                    dot.classList.remove('active');
+                    if (index === currentSlide) {
+                        dot.classList.add('active');
+                    }
+                });
+            }
+            
+            nextBtn.addEventListener('click', function() {
+                currentSlide = (currentSlide + 1) % slideCount;
+                updateSlider();
+            });
+            
+            prevBtn.addEventListener('click', function() {
+                currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+                updateSlider();
+            });
+            
+            sliderDots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    currentSlide = index;
+                    updateSlider();
+                });
+            });
+            
+            // Auto slide for testimonials
+            setInterval(function() {
+                currentSlide = (currentSlide + 1) % slideCount;
+                updateSlider();
+            }, 5000);
+            
+            // Product Tabs
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const target = this.dataset.target;
+                    
+                    tabBtns.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    productCards.forEach(card => {
+                        if (target === 'all' || card.dataset.category === target) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Gallery Filter
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const filter = this.dataset.filter;
+                    
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.dataset.category === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Lightbox for Gallery
+            const galleryOverlays = document.querySelectorAll('.gallery-overlay');
+            
+            galleryOverlays.forEach(overlay => {
+                overlay.addEventListener('click', function(e) {
+                    if (e.target.tagName === 'A' || e.target.parentElement.tagName === 'A') {
+                        e.preventDefault();
+                        
+                        const lightbox = document.createElement('div');
+                        lightbox.className = 'lightbox';
+                        lightbox.innerHTML = `
+                            <div class="lightbox-content">
+                                <img src="${e.target.closest('a').getAttribute('href')}" alt="Gallery Image">
+                                <span class="lightbox-close">&times;</span>
+                            </div>
+                        `;
+                        
+                        document.body.appendChild(lightbox);
+                        document.body.style.overflow = 'hidden';
+                        
+                        const closeBtn = lightbox.querySelector('.lightbox-close');
+                        closeBtn.addEventListener('click', function() {
+                            document.body.removeChild(lightbox);
+                            document.body.style.overflow = 'auto';
+                        });
+                        
+                        lightbox.addEventListener('click', function(e) {
+                            if (e.target === lightbox) {
+                                document.body.removeChild(lightbox);
+                                document.body.style.overflow = 'auto';
+                            }
+                        });
+                    }
+                });
+            });
+            
+            // Animation on scroll
+            function animateOnScroll() {
+                const elements = document.querySelectorAll('.service-card, .product-card, .gallery-item, .about-img, .about-text, .testimonial-card');
+                
+                elements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 50) {
+                        element.classList.add('fade-in');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', animateOnScroll);
+            animateOnScroll(); // Initial check
+            
+            // Back to Top Button functionality
+            backToTop.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+            
+            // Form Validation
+            const forms = document.querySelectorAll('form');
+            
+            forms.forEach(form => {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    let valid = true;
+                    const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+                    
+                    inputs.forEach(input => {
+                        if (!input.value.trim()) {
+                            valid = false;
+                            input.classList.add('error');
+                        } else {
+                            input.classList.remove('error');
+                        }
+                    });
+                    
+                    if (valid) {
+                        // Show success message (simulated)
+                        const successMessage = document.createElement('div');
+                        successMessage.className = 'success-message';
+                        successMessage.textContent = 'Your form has been submitted successfully! We will contact you shortly.';
+                        
+                        form.appendChild(successMessage);
+                        form.reset();
+                        
+                        setTimeout(() => {
+                            successMessage.style.opacity = '0';
+                            setTimeout(() => {
+                                form.removeChild(successMessage);
+                            }, 500);
+                        }, 3000);
+                    }
+                });
+            });
+            
+            // Add to cart functionality (simulated)
+            const addToCartBtns = document.querySelectorAll('.product-actions .btn:first-child');
+            
+            addToCartBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const productName = this.closest('.product-card').querySelector('h3').textContent;
+                    
+                    // Create notification
+                    const notification = document.createElement('div');
+                    notification.className = 'cart-notification';
+                    notification.innerHTML = `
+                        <div class="notification-content">
+                            <i class="fas fa-check-circle"></i>
+                            <p>${productName} has been added to your cart!</p>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(notification);
+                    
+                    setTimeout(() => {
+                        notification.classList.add('show');
+                    }, 100);
+                    
+                    setTimeout(() => {
+                        notification.classList.remove('show');
+                        setTimeout(() => {
+                            document.body.removeChild(notification);
+                        }, 500);
+                    }, 3000);
+                });
+            });
+        });
+    </script>
+    
+    <style>
+        /* Additional styles for JavaScript elements */
+        .error {
+            border-color: #ff3860 !important;
+        }
+        
+        .success-message {
+            background-color: #23d160;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: opacity 0.5s ease;
+        }
+        
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border: 5px solid white;
+            border-radius: 5px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .cart-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 9999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .cart-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .notification-content {
+            display: flex;
+            align-items: center;
+        }
+        
+        .notification-content i {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-color);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-top-color: var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s infinite linear;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</body>
+</html>

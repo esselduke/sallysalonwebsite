@@ -317,7 +317,6 @@
             justify-content: center;
             gap: 20px;
         }
-        
         /* About Section */
         .about {
             background-color: var(--light-text);
@@ -670,6 +669,151 @@
             flex: 1;
             font-size: 0.9rem;
         }
+        /* Product Details Modal */
+        .product-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+        
+        .product-modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .product-modal-content {
+            background-color: var(--light-text);
+            width: 90%;
+            max-width: 800px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--box-shadow);
+            transform: translateY(-50px);
+            transition: transform 0.4s ease;
+        }
+        
+        .product-modal.show .product-modal-content {
+            transform: translateY(0);
+        }
+        
+        .product-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        
+        .product-modal-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .product-modal-close {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-gray);
+            transition: var(--transition);
+        }
+        
+        .product-modal-close:hover {
+            color: var(--primary-color);
+        }
+        
+        .product-modal-body {
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .product-modal-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .product-modal-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .product-modal-details h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .product-modal-price {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .product-modal-price .original-price {
+            font-size: 1.2rem;
+        }
+        
+        .product-modal-description {
+            margin-bottom: 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+        }
+        
+        .product-modal-features {
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-modal-features h5 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .product-modal-features ul {
+            list-style: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .product-modal-features ul li {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .product-modal-features ul li i {
+            color: var(--accent-color);
+            margin-right: 0.8rem;
+        }
+        
+        .product-modal-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        @media (max-width: 768px) {
+            .product-modal-body {
+                grid-template-columns: 1fr;
+            }
+        }
         
         /* Gallery Section */
         .gallery {
@@ -890,7 +1034,6 @@
             justify-content: center;
             margin-top: 1.5rem;
         }
-        
         .slider-dot {
             width: 12px;
             height: 12px;
@@ -1015,6 +1158,127 @@
             grid-column: 1 / -1;
         }
         
+        /* Date Picker Calendar */
+        .date-picker-container {
+            position: relative;
+        }
+        
+        .calendar-container {
+            position: absolute;
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            padding: 15px;
+            width: 300px;
+            z-index: 100;
+            display: none;
+        }
+        
+        .calendar-container.show {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .calendar-month-year {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .calendar-nav-btn {
+            width: 30px;
+            height: 30px;
+            background-color: var(--secondary-color);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .calendar-nav-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+        
+        .calendar-weekday {
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--dark-gray);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+        }
+        
+        .calendar-day {
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .calendar-day:hover:not(.disabled) {
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .calendar-day.selected {
+            background-color: var(--accent-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .calendar-day.today {
+            border: 2px solid var(--accent-color);
+            font-weight: 600;
+        }
+        
+        .calendar-day.disabled {
+            color: var(--medium-gray);
+            cursor: not-allowed;
+        }
+        
+        .calendar-day.available {
+            background-color: rgba(192, 138, 117, 0.2);
+        }
+        
         /* Contact Section */
         .contact {
             background-color: var(--secondary-color);
@@ -1079,7 +1343,6 @@
             color: var(--primary-color);
             font-size: 1.1rem;
         }
-        
         .contact-info-text {
             flex: 1;
         }
@@ -1456,12 +1719,119 @@
         }
 
         @media (max-width: 768px) {
-  .hero {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/download1-ezgif.com-webp-to-jpg-converter.jpg') center/cover no-repeat;
-    background-attachment: scroll;
-  }
-}
-
+            .hero {
+                background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/download1-ezgif.com-webp-to-jpg-converter.jpg') center/cover no-repeat;
+                background-attachment: scroll;
+            }
+        }
+        /* Additional styles for JavaScript elements */
+        .error {
+            border-color: #ff3860 !important;
+        }
+        
+        .success-message {
+            background-color: #23d160;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: opacity 0.5s ease;
+        }
+        
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border: 5px solid white;
+            border-radius: 5px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .cart-notification {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 9999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.5s ease;
+        }
+        
+        .cart-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .notification-content {
+            display: flex;
+            align-items: center;
+        }
+        
+        .notification-content i {
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+        
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-color);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.1);
+            border-top-color: var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s infinite linear;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
     </style>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -1546,7 +1916,6 @@
             </div>
         </div>
     </section>
-
     <!-- Services Section -->
     <section class="services section-padding" id="services">
         <div class="container">
@@ -1617,7 +1986,7 @@
                 <button class="tab-btn" data-target="accessories">Accessories</button>
             </div>
             <div class="products-grid">
-                <div class="product-card" data-category="hair">
+                <div class="product-card" data-category="hair" data-product-id="hair-oil">
                     <div class="product-badge">Best Seller</div>
                     <div class="product-img">
                         <img src="images/amy-lewis-mGEVuLZNAxY-unsplash.jpg" alt="Hair Oil">
@@ -1637,11 +2006,11 @@
                         </div>
                         <div class="product-actions">
                             <a href="#" class="btn">Add to Cart</a>
-                            <a href="#" class="btn outline">Details</a>
+                            <a href="#" class="btn outline product-details-btn" data-product="hair-oil">Details</a>
                         </div>
                     </div>
                 </div>
-                <div class="product-card" data-category="hair">
+                <div class="product-card" data-category="hair" data-product-id="edge-control">
                     <div class="product-img">
                         <img src="images/gabrielle-henderson-1DMNn6gBbwQ-unsplash.jpg" alt="Edge Control">
                     </div>
@@ -1659,11 +2028,11 @@
                         </div>
                         <div class="product-actions">
                             <a href="#" class="btn">Add to Cart</a>
-                            <a href="#" class="btn outline">Details</a>
+                            <a href="#" class="btn outline product-details-btn" data-product="edge-control">Details</a>
                         </div>
                     </div>
                 </div>
-                <div class="product-card" data-category="lash">
+                <div class="product-card" data-category="lash" data-product-id="lash-cleanser">
                     <div class="product-img">
                         <img src="images/glenna-haug-aYrOtqypmho-unsplash.jpg" alt="Lash Cleanser">
                     </div>
@@ -1681,11 +2050,11 @@
                         </div>
                         <div class="product-actions">
                             <a href="#" class="btn">Add to Cart</a>
-                            <a href="#" class="btn outline">Details</a>
+                            <a href="#" class="btn outline product-details-btn" data-product="lash-cleanser">Details</a>
                         </div>
                     </div>
                 </div>
-                <div class="product-card" data-category="accessories">
+                <div class="product-card" data-category="accessories" data-product-id="satin-bonnet">
                     <div class="product-badge">New</div>
                     <div class="product-img">
                         <img src="images/nick-scott-Yo6tVaQHAho-unsplash.jpg" alt="Satin Bonnet">
@@ -1705,13 +2074,195 @@
                         </div>
                         <div class="product-actions">
                             <a href="#" class="btn">Add to Cart</a>
-                            <a href="#" class="btn outline">Details</a>
+                            <a href="#" class="btn outline product-details-btn" data-product="satin-bonnet">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Product Details Modals -->
+        <div class="product-modal" id="product-modal-hair-oil">
+            <div class="product-modal-content">
+                <div class="product-modal-header">
+                    <h3>Nourishing Hair Oil</h3>
+                    <div class="product-modal-close">&times;</div>
+                </div>
+                <div class="product-modal-body">
+                    <div class="product-modal-img">
+                        <img src="images/amy-lewis-mGEVuLZNAxY-unsplash.jpg" alt="Hair Oil">
+                    </div>
+                    <div class="product-modal-details">
+                        <div class="product-modal-price">
+                            <span>$24.99</span>
+                            <span class="original-price">$29.99</span>
+                        </div>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(4.5/5)</span>
+                        </div>
+                        <p class="product-modal-description">
+                            Our nourishing hair oil is specially formulated to hydrate and revitalize your hair and scalp. 
+                            Made with a blend of natural oils including argan, jojoba, and coconut, this lightweight formula 
+                            penetrates deeply to repair damage, reduce frizz, and add gorgeous shine.
+                        </p>
+                        <div class="product-modal-features">
+                            <h5>Key Benefits:</h5>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Restores moisture to dry, damaged hair</li>
+                                <li><i class="fas fa-check"></i> Soothes dry, itchy scalp</li>
+                                <li><i class="fas fa-check"></i> Reduces frizz and adds shine</li>
+                                <li><i class="fas fa-check"></i> Lightweight formula won't weigh hair down</li>
+                                <li><i class="fas fa-check"></i> Made with 100% natural oils</li>
+                            </ul>
+                        </div>
+                        <div class="product-modal-actions">
+                            <button class="btn">Add to Cart</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <!-- Additional Product Modals -->
+    <div class="product-modal" id="product-modal-edge-control">
+        <div class="product-modal-content">
+            <div class="product-modal-header">
+                <h3>Premium Edge Control</h3>
+                <div class="product-modal-close">&times;</div>
+            </div>
+            <div class="product-modal-body">
+                <div class="product-modal-img">
+                    <img src="images/gabrielle-henderson-1DMNn6gBbwQ-unsplash.jpg" alt="Edge Control">
+                </div>
+                <div class="product-modal-details">
+                    <div class="product-modal-price">
+                        <span>$18.99</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <span>(5/5)</span>
+                    </div>
+                    <p class="product-modal-description">
+                        Our premium edge control provides superior hold without flaking or buildup. This non-greasy formula 
+                        tames and smooths edges while adding shine and nourishing your hair with our proprietary blend of 
+                        natural ingredients.
+                    </p>
+                    <div class="product-modal-features">
+                        <h5>Key Benefits:</h5>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Strong, long-lasting hold without flaking</li>
+                            <li><i class="fas fa-check"></i> No residue or build-up</li>
+                            <li><i class="fas fa-check"></i> Non-greasy formula</li>
+                            <li><i class="fas fa-check"></i> Adds shine and nourishes hair</li>
+                            <li><i class="fas fa-check"></i> Works for all hair types</li>
+                        </ul>
+                    </div>
+                    <div class="product-modal-actions">
+                        <button class="btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="product-modal" id="product-modal-lash-cleanser">
+        <div class="product-modal-content">
+            <div class="product-modal-header">
+                <h3>Gentle Lash Cleanser</h3>
+                <div class="product-modal-close">&times;</div>
+            </div>
+            <div class="product-modal-body">
+                <div class="product-modal-img">
+                    <img src="images/glenna-haug-aYrOtqypmho-unsplash.jpg" alt="Lash Cleanser">
+                </div>
+                <div class="product-modal-details">
+                    <div class="product-modal-price">
+                        <span>$15.99</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span>(4/5)</span>
+                    </div>
+                    <p class="product-modal-description">
+                        Keep your lash extensions looking fresh and extending their lifespan with our gentle lash cleanser. 
+                        This oil-free formula effectively removes dirt, makeup, and oils without damaging the lash adhesive.
+                    </p>
+                    <div class="product-modal-features">
+                        <h5>Key Benefits:</h5>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Oil-free formula safe for lash extensions</li>
+                            <li><i class="fas fa-check"></i> Gentle yet effective cleaning</li>
+                            <li><i class="fas fa-check"></i> Extends the life of your lash extensions</li>
+                            <li><i class="fas fa-check"></i> Prevents buildup that can lead to eye infections</li>
+                            <li><i class="fas fa-check"></i> Easy-to-use foaming formula</li>
+                        </ul>
+                    </div>
+                    <div class="product-modal-actions">
+                        <button class="btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="product-modal" id="product-modal-satin-bonnet">
+        <div class="product-modal-content">
+            <div class="product-modal-header">
+                <h3>Luxury Satin Bonnet</h3>
+                <div class="product-modal-close">&times;</div>
+            </div>
+            <div class="product-modal-body">
+                <div class="product-modal-img">
+                    <img src="images/nick-scott-Yo6tVaQHAho-unsplash.jpg" alt="Satin Bonnet">
+                </div>
+                <div class="product-modal-details">
+                    <div class="product-modal-price">
+                        <span>$22.99</span>
+                        <span class="original-price">$27.99</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span>(4.5/5)</span>
+                    </div>
+                    <p class="product-modal-description">
+                        Protect your hair overnight with our luxury satin bonnet. Specially designed to reduce friction, 
+                        prevent breakage, and maintain moisture, our premium satin bonnet is a must-have for anyone with 
+                        braids, locs, or natural hair styles.
+                    </p>
+                    <div class="product-modal-features">
+                        <h5>Key Benefits:</h5>
+                        <ul>
+                            <li><i class="fas fa-check"></i> Premium satin material protects hair from friction</li>
+                            <li><i class="fas fa-check"></i> Helps maintain hairstyles overnight</li>
+                            <li><i class="fas fa-check"></i> Prevents moisture loss and reduces frizz</li>
+                            <li><i class="fas fa-check"></i> Extra large size accommodates all hair types and styles</li>
+                            <li><i class="fas fa-check"></i> Adjustable elastic band for comfortable, secure fit</li>
+                        </ul>
+                    </div>
+                    <div class="product-modal-actions">
+                        <button class="btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Gallery Section -->
     <section class="gallery section-padding" id="gallery">
@@ -1778,7 +2329,6 @@
             </div>
         </div>
     </section>
-
     <!-- Testimonials Section -->
     <section class="testimonials section-padding" id="testimonials">
         <div class="container">
@@ -1890,13 +2440,47 @@
                         <label class="form-label">Email Address</label>
                         <input type="email" class="form-control" required>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group date-picker-container">
                         <label class="form-label">Date</label>
-                        <input type="date" class="form-control" required>
+                        <input type="text" class="form-control date-picker" placeholder="Select a date" readonly required>
+                        <div class="calendar-container">
+                            <div class="calendar-header">
+                                <button type="button" class="calendar-nav-btn prev-month">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <div class="calendar-month-year">March 2025</div>
+                                <button type="button" class="calendar-nav-btn next-month">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            <div class="calendar-weekdays">
+                                <div class="calendar-weekday">Sun</div>
+                                <div class="calendar-weekday">Mon</div>
+                                <div class="calendar-weekday">Tue</div>
+                                <div class="calendar-weekday">Wed</div>
+                                <div class="calendar-weekday">Thu</div>
+                                <div class="calendar-weekday">Fri</div>
+                                <div class="calendar-weekday">Sat</div>
+                            </div>
+                            <div class="calendar-days">
+                                <!-- Calendar days will be generated by JavaScript -->
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Time</label>
-                        <input type="time" class="form-control" required>
+                        <select class="form-control" id="appointment-time" required>
+                            <option value="" disabled selected>Select Time</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="13:00">1:00 PM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="15:00">3:00 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                            <option value="17:00">5:00 PM</option>
+                            <option value="18:00">6:00 PM</option>
+                        </select>
                     </div>
                     <div class="form-group full-width">
                         <label class="form-label">Service</label>
@@ -2074,7 +2658,6 @@
     <button type="button" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up"></i>
     </button>
-
     <!-- JavaScript -->
     <script>
         // Wait for DOM to load
@@ -2219,6 +2802,41 @@
                 });
             });
             
+            // Product Details Modals
+            const productDetailsBtns = document.querySelectorAll('.product-details-btn');
+            const productModals = document.querySelectorAll('.product-modal');
+            const productModalCloseBtns = document.querySelectorAll('.product-modal-close');
+            
+            productDetailsBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productId = this.dataset.product;
+                    const modal = document.getElementById(`product-modal-${productId}`);
+                    
+                    if (modal) {
+                        modal.classList.add('show');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+            
+            productModalCloseBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const modal = this.closest('.product-modal');
+                    modal.classList.remove('show');
+                    document.body.style.overflow = 'auto';
+                });
+            });
+            
+            productModals.forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.classList.remove('show');
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+            
             // Gallery Filter
             const filterBtns = document.querySelectorAll('.filter-btn');
             const galleryItems = document.querySelectorAll('.gallery-item');
@@ -2292,7 +2910,6 @@
             
             window.addEventListener('scroll', animateOnScroll);
             animateOnScroll(); // Initial check
-            
             // Back to Top Button functionality
             backToTop.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -2301,6 +2918,148 @@
                     behavior: 'smooth'
                 });
             });
+            
+            // Calendar Date Picker for Booking
+            const datePicker = document.querySelector('.date-picker');
+            const calendarContainer = document.querySelector('.calendar-container');
+            const calendarDays = document.querySelector('.calendar-days');
+            const calendarMonthYear = document.querySelector('.calendar-month-year');
+            const prevMonthBtn = document.querySelector('.prev-month');
+            const nextMonthBtn = document.querySelector('.next-month');
+            
+            // Current date
+            let currentDate = new Date();
+            let selectedDate = null;
+            
+            // Available dates (simulated - these would come from your backend)
+            const availableDates = [
+                new Date(2025, 2, 20), // March 20, 2025
+                new Date(2025, 2, 21),
+                new Date(2025, 2, 22),
+                new Date(2025, 2, 24),
+                new Date(2025, 2, 25),
+                new Date(2025, 2, 27),
+                new Date(2025, 2, 28),
+                new Date(2025, 2, 31),
+                new Date(2025, 3, 1),  // April 1, 2025
+                new Date(2025, 3, 2),
+                new Date(2025, 3, 3),
+                new Date(2025, 3, 4),
+                new Date(2025, 3, 7),
+                new Date(2025, 3, 8),
+                new Date(2025, 3, 10),
+                new Date(2025, 3, 11),
+                new Date(2025, 3, 14),
+                new Date(2025, 3, 15)
+            ];
+            
+            // Check if a date is available
+            function isDateAvailable(date) {
+                return availableDates.some(availableDate => 
+                    availableDate.getDate() === date.getDate() && 
+                    availableDate.getMonth() === date.getMonth() && 
+                    availableDate.getFullYear() === date.getFullYear()
+                );
+            }
+            
+            // Toggle calendar
+            datePicker.addEventListener('click', function() {
+                calendarContainer.classList.toggle('show');
+                generateCalendar(currentDate);
+            });
+            
+            // Close calendar when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!datePicker.contains(e.target) && !calendarContainer.contains(e.target)) {
+                    calendarContainer.classList.remove('show');
+                }
+            });
+            
+            // Generate calendar
+            function generateCalendar(date) {
+                // Clear previous days
+                calendarDays.innerHTML = '';
+                
+                // Set month and year display
+                const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                calendarMonthYear.textContent = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+                
+                // Get first day of month and number of days
+                const firstDayOfMonth = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+                const daysInMonth = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+                
+                // Add empty cells for days before first of month
+                for (let i = 0; i < firstDayOfMonth; i++) {
+                    const emptyDay = document.createElement('div');
+                    emptyDay.className = 'calendar-day disabled';
+                    calendarDays.appendChild(emptyDay);
+                }
+                
+                // Add days of month
+                const today = new Date();
+                for (let i = 1; i <= daysInMonth; i++) {
+                    const dayElement = document.createElement('div');
+                    dayElement.className = 'calendar-day';
+                    dayElement.textContent = i;
+                    
+                    const currentDateCheck = new Date(date.getFullYear(), date.getMonth(), i);
+                    
+                    // Check if day is today
+                    if (today.getDate() === i && today.getMonth() === date.getMonth() && today.getFullYear() === date.getFullYear()) {
+                        dayElement.classList.add('today');
+                    }
+                    
+                    // Check if day is selected
+                    if (selectedDate && selectedDate.getDate() === i && selectedDate.getMonth() === date.getMonth() && selectedDate.getFullYear() === date.getFullYear()) {
+                        dayElement.classList.add('selected');
+                    }
+                    
+                    // Check if day is available
+                    if (isDateAvailable(currentDateCheck)) {
+                        dayElement.classList.add('available');
+                        
+                        // Add click event to available days
+                        dayElement.addEventListener('click', function() {
+                            // Remove selected class from previously selected day
+                            const prevSelected = document.querySelector('.calendar-day.selected');
+                            if (prevSelected) {
+                                prevSelected.classList.remove('selected');
+                            }
+                            
+                            // Select this day
+                            this.classList.add('selected');
+                            selectedDate = new Date(date.getFullYear(), date.getMonth(), i);
+                            
+                            // Update input field
+                            const formattedDate = `${monthNames[date.getMonth()].substring(0, 3)} ${i}, ${date.getFullYear()}`;
+                            datePicker.value = formattedDate;
+                            
+                            // Hide calendar
+                            calendarContainer.classList.remove('show');
+                        });
+                    } else {
+                        // Disable past days and unavailable days
+                        dayElement.classList.add('disabled');
+                    }
+                    
+                    calendarDays.appendChild(dayElement);
+                }
+            }
+            
+            // Previous month
+            prevMonthBtn.addEventListener('click', function() {
+                currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1);
+                generateCalendar(currentDate);
+            });
+            
+            // Next month
+            nextMonthBtn.addEventListener('click', function() {
+                currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1);
+                generateCalendar(currentDate);
+            });
+            
+            // Initialize calendar with current month
+            generateCalendar(currentDate);
             
             // Form Validation
             const forms = document.querySelectorAll('form');
@@ -2347,7 +3106,9 @@
                 btn.addEventListener('click', function(e) {
                     e.preventDefault();
                     
-                    const productName = this.closest('.product-card').querySelector('h3').textContent;
+                    const productName = this.closest('.product-card') ? 
+                        this.closest('.product-card').querySelector('h3').textContent :
+                        this.closest('.product-modal-content').querySelector('h3').textContent;
                     
                     // Create notification
                     const notification = document.createElement('div');
@@ -2375,116 +3136,5 @@
             });
         });
     </script>
-    
-    <style>
-        /* Additional styles for JavaScript elements */
-        .error {
-            border-color: #ff3860 !important;
-        }
-        
-        .success-message {
-            background-color: #23d160;
-            color: white;
-            padding: 1rem;
-            border-radius: 5px;
-            margin-top: 1rem;
-            transition: opacity 0.5s ease;
-        }
-        
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-        
-        .lightbox-content {
-            position: relative;
-            max-width: 80%;
-            max-height: 80%;
-        }
-        
-        .lightbox-content img {
-            max-width: 100%;
-            max-height: 80vh;
-            border: 5px solid white;
-            border-radius: 5px;
-        }
-        
-        .lightbox-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            font-size: 2rem;
-            color: white;
-            cursor: pointer;
-        }
-        
-        .cart-notification {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            z-index: 9999;
-            transform: translateY(100px);
-            opacity: 0;
-            transition: all 0.5s ease;
-        }
-        
-        .cart-notification.show {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .notification-content {
-            display: flex;
-            align-items: center;
-        }
-        
-        .notification-content i {
-            color: var(--accent-color);
-            font-size: 1.5rem;
-            margin-right: 10px;
-        }
-        
-        /* Preloader */
-        #preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--primary-color);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .loader {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(255, 255, 255, 0.1);
-            border-top-color: var(--accent-color);
-            border-radius: 50%;
-            animation: spin 1s infinite linear;
-        }
-        
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
 </body>
 </html>

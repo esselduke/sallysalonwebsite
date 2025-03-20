@@ -223,10 +223,10 @@
 } */
 
 /* Remove background color change on dropdown */
-/* .nav-dropdown {
+.nav-dropdown {
     background-color: var(--primary-color);
     list-style: none;
-} */
+}
 
 .nav-item:hover .nav-dropdown {
     opacity: 1;

@@ -494,39 +494,39 @@ const tabBtns = document.querySelectorAll('.tab-btn');
             });
             
             // Add to cart functionality (simulated)
-            const addToCartBtns = document.querySelectorAll('.product-actions .btn:first-child, .product-modal-actions .btn');
+            // const addToCartBtns = document.querySelectorAll('.product-actions .btn:first-child, .product-modal-actions .btn');
             
-            addToCartBtns.forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
+            // addToCartBtns.forEach(btn => {
+            //     btn.addEventListener('click', function(e) {
+            //         e.preventDefault();
                     
-                    const productName = this.closest('.product-card') ? 
-                        this.closest('.product-card').querySelector('h3').textContent :
-                        this.closest('.product-modal-content').querySelector('h3').textContent;
+            //         const productName = this.closest('.product-card') ? 
+            //             this.closest('.product-card').querySelector('h3').textContent :
+            //             this.closest('.product-modal-content').querySelector('h3').textContent;
                     
-                    // Create notification
-                    const notification = document.createElement('div');
-                    notification.className = 'cart-notification';
-                    notification.innerHTML = `
-                        <div class="notification-content">
-                            <i class="fas fa-check-circle"></i>
-                            <p>${productName} has been added to your cart!</p>
-                        </div>
-                    `;
+            //         // Create notification
+            //         const notification = document.createElement('div');
+            //         notification.className = 'cart-notification';
+            //         notification.innerHTML = `
+            //             <div class="notification-content">
+            //                 <i class="fas fa-check-circle"></i>
+            //                 <p>${productName} has been added to your cart!</p>
+            //             </div>
+            //         `;
                     
-                    document.body.appendChild(notification);
+            //         document.body.appendChild(notification);
                     
-                    setTimeout(() => {
-                        notification.classList.add('show');
-                    }, 100);
+            //         setTimeout(() => {
+            //             notification.classList.add('show');
+            //         }, 100);
                     
-                    setTimeout(() => {
-                        notification.classList.remove('show');
-                        setTimeout(() => {
-                            document.body.removeChild(notification);
-                        }, 500);
-                    }, 3000);
-                });
-            });
+            //         setTimeout(() => {
+            //             notification.classList.remove('show');
+            //             setTimeout(() => {
+            //                 document.body.removeChild(notification);
+            //             }, 500);
+            //         }, 3000);
+            //     });
+            // });
         });
    

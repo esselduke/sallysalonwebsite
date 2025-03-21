@@ -1918,49 +1918,41 @@ html, body {
                 display: block;
             }
             
-          /* Base styles for ALL nav links (including About) */
-.nav-menu li a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-color);
-    bottom: 0;
-    left: 0;
-    right: auto;
-    transition: width 0.3s ease;
-}
-
-.nav-menu li a:hover::after,
-.nav-menu li a.active::after {
-    width: 100%;
-}
-
-/* Additional styling for dropdown items */
-.nav-dropdown li a {
-    display: inline-block; /* Keep this to match text width */
-    text-align: center;
-    position: relative;
-    width: auto; /* Only as wide as the text */
-    padding: 12px 15px;
-}
-
-/* For the about section dropdown items, adjust position and ensure consistent behavior */
-.nav-dropdown li a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background-color: var(--accent-color);
-    bottom: -2px; /* Position closer to text */
-    left: 0;
-    transition: width 0.3s ease;
-}
-
-.nav-dropdown li a:hover::after,
-.nav-dropdown li a.active::after {
-    width: 100%; /* Match width of text only (since parent is inline-block) */
-}
+            @media (max-width: 992px) {
+                /* Make all nav links inline-block to match text width */
+                .nav-menu li a {
+                    display: inline-block;
+                    width: auto;
+                    text-align: center;
+                }
+                
+                /* This ensures the underlines match the text width */
+                .nav-menu li a::after {
+                    content: '';
+                    position: absolute;
+                    width: 0;
+                    height: 2px;
+                    background-color: var(--accent-color);
+                    bottom: 0;
+                    left: 0;
+                    right: auto;
+                    transition: width 0.3s ease;
+                }
+              
+                .nav-menu li a:hover::after,
+                .nav-menu li a.active::after {
+                    width: 100%;
+                }
+                
+                /* Additional styling for dropdown items */
+                .nav-dropdown li a {
+                    display: inline-block;
+                    text-align: center;
+                    position: relative;
+                    width: auto;
+                    padding: 12px 15px;
+                }
+              }
             
             /* Mobile Dropdown - improved for mobile */
             .nav-dropdown {
